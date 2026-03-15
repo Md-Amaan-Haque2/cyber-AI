@@ -1,0 +1,16 @@
+[Unit]
+Description=Cyber Agent AI Process Monitor
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/cyber-agent/src
+ExecStart=/usr/bin/python3 /opt/cyber-agent/src/main.py /etc/cyber-agent/settings.yaml
+Restart=on-failure
+RestartSec=5
+StandardOutput=append:/var/log/cyber-agent.log
+StandardError=append:/var/log/cyber-agent.log
+
+[Install]
+WantedBy=multi-user.target

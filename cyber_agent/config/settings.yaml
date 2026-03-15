@@ -1,0 +1,31 @@
+# Cyber Agent Configuration
+
+agent:
+  name: "CyberAgent"
+  version: "1.0.0"
+  log_level: "INFO"
+  log_file: "/var/log/cyber-agent.log"
+  scan_interval: 5  # Seconds between scans
+
+security:
+  # Thresholds for alerting
+  max_cpu_percent: 80.0
+  max_memory_percent: 80.0
+  
+  # Whitelisted processes (names) - critical system processes
+  whitelist:
+    - "systemd"
+    - "kthreadd"
+    - "sshd"
+    - "bash"
+    - "python3"  # Ideally user should be more specific
+    - "cyber-agent"
+
+  # Blacklisted patterns (simple string matching for now)
+  blacklist_patterns:
+    - "miner"
+    - "hack"
+    - "keylogger"
+
+  # Actions
+  auto_kill_blacklisted: false  # If true, automatically kill blacklisted processes
